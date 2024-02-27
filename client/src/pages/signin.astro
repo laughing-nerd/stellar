@@ -77,8 +77,8 @@
     const form = document.querySelector("form");
     form?.addEventListener("submit", async function (event) {
       event.preventDefault();
-      const username = document.querySelector("#username")?.value;
-      const password = document.querySelector("#password")?.value;
+      const username = document.querySelector<HTMLInputElement>("#username")?.value;
+      const password = document.querySelector<HTMLInputElement>("#password")?.value;
 
       const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/signin`, {
         method: "POST",
@@ -91,7 +91,7 @@
         }),
       });
       if (res.status === 200) {
-        localStorage.setItem("username", username);
+        localStorage.setItem("username", username!);
       }
       form.reset();
       location.href = "/"

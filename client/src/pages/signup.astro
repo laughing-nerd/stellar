@@ -84,9 +84,8 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-
-    if (localStorage.getItem("username")){
-      location.href="/"
+    if (localStorage.getItem("username")) {
+      location.href = "/";
     }
 
     const form = document.querySelector("form");
@@ -134,11 +133,12 @@
     }
 
     checkbox?.addEventListener("change", () => {
-      console.log(username.length);
-      if (checkbox.checked) {
+      if (checkbox.checked && submitBtn !== null) {
         submitBtn.disabled = false;
       } else {
-        submitBtn.disabled = true;
+        if (submitBtn !== null) {
+          submitBtn.disabled = true;
+        }
       }
     });
   });
