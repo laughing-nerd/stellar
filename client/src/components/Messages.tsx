@@ -35,7 +35,7 @@ const Messages = () => {
 
     const unsubscribeRoom = room.subscribe(async (roomVal) => {
       setJoinedRoom(roomVal)
-      const res = await fetch(`http://localhost:5000/getMessages?room=${roomVal}`)
+      const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/getMessages?room=${roomVal}`)
       const data = await res.json()
       if (data !== null) {
         setMessages(JSON.parse(JSON.stringify(data)))

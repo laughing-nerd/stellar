@@ -12,7 +12,7 @@ export default function Chatroom() {
   const fetchChatrooms = async () => {
     try {
       setRefreshing(true)
-      const res = await fetch(`http://localhost:5000/rooms`)
+      const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/rooms`)
       const data = await res.json()
       setChatrooms(data)
     }
@@ -28,7 +28,7 @@ export default function Chatroom() {
     if (ws.get() !== null) {
       ws.get()?.close()
     }
-    const socket = new WebSocket("ws://localhost:5000/ws");
+    const socket = new WebSocket(`${import.meta.env.PUBLIC_WS_URL}`);
     socket.onopen = () => { socket.send(ele) }
     ws.set(socket)
     room.set(ele)

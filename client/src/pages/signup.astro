@@ -110,7 +110,7 @@
       ) {
         alert("Username and Password can't be empty");
       } else {
-        await fetch("http://localhost:5000/signup", {
+        await fetch(`${import.meta.env.PUBLIC_API_URL}/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
