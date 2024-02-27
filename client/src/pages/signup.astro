@@ -1,0 +1,145 @@
+<section class="bg-gradient-to-r from-[#112] to-[#040611] text-white h-screen">
+  <div class="grid grid-cols-1 lg:grid-cols-2">
+    <div class="h-screen relative hidden lg:block">
+      <img
+        class="mx-auto h-full w-full rounded-md object-cover absolute"
+        src="/signup.jpg"
+        alt="Signin"
+      />
+    </div>
+    <div
+      class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24 h-screen"
+    >
+      <div class="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+        <h2 class="text-3xl font-bold leading-tight sm:text-4xl">
+          Create an account to<br />chat with other astronauts &#127757;
+        </h2>
+        <p class="mt-2 text-sm">
+          All set to launch?
+          <a
+            href="/signin"
+            class="font-semibold text-gray-400 transition-all duration-200 hover:underline"
+            >Sign in here</a
+          >
+        </p>
+        <form class="mt-8">
+          <div class="space-y-5">
+            <div>
+              <label for="" class="text-base font-medium text-gray-400">
+                {" "}
+                Username{" "}
+              </label>
+              <div class="mt-2">
+                <input
+                  class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="This username will be visible to everyone"
+                  id="username"
+                />
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between">
+                <label for="" class="text-base font-medium text-gray-400">
+                  {" "}
+                  Password{" "}
+                </label>
+              </div>
+              <div class="mt-2">
+                <input
+                  class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                />
+              </div>
+            </div>
+            <div>
+              <div>
+                <div class="mt-2 flex items-center gap-1">
+                  <input
+                    class="cursor-pointer rounded-md border border-gray-300 bg-transparent px-3 py-2"
+                    type="checkbox"
+                    placeholder="Password"
+                    id="check"
+                  />
+                  <p class="text-sm">
+                    I agree to be respectful towards other astronauts
+                  </p>
+                </div>
+              </div>
+              <button
+                type="submit"
+                id="submit"
+                class="my-5 hover:bg-black/40 transition-all inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white disabled:bg-gray-600/20 disabled:text-white/20"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    if (localStorage.getItem("username")){
+      location.href="/"
+    }
+
+    const form = document.querySelector("form");
+
+    form?.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const usernameInput =
+        document.querySelector<HTMLInputElement>("#username");
+      const passwordInput =
+        document.querySelector<HTMLInputElement>("#password");
+
+      const username: string = usernameInput?.value as string;
+      const password: string = passwordInput?.value as string;
+
+      if (
+        !username ||
+        username.trim().length < 3 ||
+        !password ||
+        password.trim().length < 3
+      ) {
+        alert("Username and Password can't be empty");
+      } else {
+        await fetch("http://localhost:5000/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        });
+        localStorage.setItem("username", username);
+        form.reset();
+        location.href = "/";
+      }
+    });
+
+    const checkbox = document.querySelector<HTMLInputElement>("#check");
+    const submitBtn = document.querySelector<HTMLButtonElement>("#submit");
+
+    if (submitBtn !== null) {
+      submitBtn.disabled = true;
+    }
+
+    checkbox?.addEventListener("change", () => {
+      console.log(username.length);
+      if (checkbox.checked) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    });
+  });
+</script>

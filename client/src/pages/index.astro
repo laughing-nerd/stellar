@@ -1,0 +1,18 @@
+---
+import Main from "@/layout/Main.astro"
+import Chatroom from "@/components/Chatroom"
+import Messages from "@/components/Messages"
+
+---
+
+<Main>
+  <Chatroom client:load />
+  <Messages client:load />
+</Main>
+
+<script>
+const username = localStorage.getItem("username")
+if (!username){
+  location.href="/signin"
+}
+</script>
