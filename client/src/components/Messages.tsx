@@ -1,7 +1,7 @@
-import { ws } from "@/store/wsStore";
+import { ws } from "../store/wsStore";
 import { SendIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { room } from "@/store/roomStore";
+import { room } from "../store/roomStore";
 import DisplayMessages from "./DisplayMessages";
 
 const Messages = () => {
@@ -22,7 +22,7 @@ const Messages = () => {
       }])
     };
 
-    const unsubscribeWs = ws.subscribe((newWebSocket) => {
+    const unsubscribeWs = ws.subscribe((newWebSocket: WebSocket | null) => {
       if (websocket) {
         websocket.removeEventListener("message", handleWebsocketMessage);
       }
@@ -33,7 +33,7 @@ const Messages = () => {
       }
     })
 
-    const unsubscribeRoom = room.subscribe(async (roomVal) => {
+    const unsubscribeRoom = room.subscribe(async (roomVal: string) => {
       setJoinedRoom(roomVal)
       const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/getMessages?room=${roomVal}`)
       const data = await res.json()

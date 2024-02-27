@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MenuIcon, RefreshCw, XIcon } from "lucide-react";
-import { ws } from "@/store/wsStore";
-import { room } from "@/store/roomStore";
+import { ws } from "../store/wsStore";
+import { room } from "../store/roomStore";
 
 export default function Chatroom() {
   const [refreshing, setRefreshing] = useState<boolean>(false)
@@ -47,7 +47,7 @@ export default function Chatroom() {
             <p className="text-2xl tracking-wide uppercase">Stellar</p>
           </div>
 
-          <XIcon onClick={()=>setShown(!shown)} className="mt-6 pr-1" />
+          <XIcon onClick={() => setShown(!shown)} className="mt-6 pr-1" />
         </div>
 
         <div className="flex justify-between px-4 mb-10">
