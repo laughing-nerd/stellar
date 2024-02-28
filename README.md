@@ -24,3 +24,8 @@ Anyway, here are some screenshots depicting how Stellar **works on my machine!**
 ![stellar3](https://github.com/laughing-nerd/stellar/assets/90846840/8b44edbd-a554-4509-8e73-664820a1e41b)<br><br>
 ![stellar4](https://github.com/laughing-nerd/stellar/assets/90846840/e87d996d-69fd-4d97-a67a-5ac27389333e)<br><br>
 
+# Demo
+
+https://github.com/laughing-nerd/stellar/assets/90846840/1ffb18c4-a81e-4b4e-af07-8a3046362df6
+
+
