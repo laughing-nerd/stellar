@@ -1,4 +1,4 @@
-# Sellar
+# Stellar
 I've been exploring Astro lately, and I wondered: what better way to learn than by creating a chatroom service in Astro powered by a Golang backend! Stellar is still a work in progress, but I've had a lot of fun developing it. I'll continue working on it and plan to add more features<br>
 Some of the current features are:
 - ⚡️ Super fast websocket connection powered by a Go backend with minimum dependencies
